@@ -5,50 +5,94 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
-  TextInput,
+  TouchableOpacity,
 } from "react-native";
 
-export default function App() {
-  const [name, setName] = useState("KP");
-  const [person, setPerson] = useState({ name: "KP", age: 31 });
-  const [text, setText] = useState("What's your name?");
+export default function Game() {
+  const grid = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+  ];
 
-  const handleButtonPress = () => {
-    console.log("clicky clicky");
+  const [move, setMove] = useState("");
 
-    setPerson({ name: "KristenP", age: 32 });
+  const handleSquare = () => {
+    console.log("moves");
   };
-
-  const onChangeText = () => {
-    console.log("text input handled.");
+  const handleRestart = () => {
+    console.log("restart");
   };
-
   return (
     <SafeAreaView style={styles.container}>
-      {/* <View style={styles.header}>
-        <Text style={styles.headerText}>GameZone</Text>
-      </View> */}
-      {/* <View style={styles.body}>
-        <Text style={styles.bodyText}>My name is {name}</Text>
-        <Text style={styles.bodyText}>
-          Name: {person.name} Age: {person.age}
-        </Text>
-      </View> */}
-
-      <View style={styles.textInputContainer}>
-        <View style={styles.textContainer}>
-          <Text>Name: </Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeText}
-            value={text}
-          />
+      <View style={styles.wrapper}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Tic-Tac-Toe</Text>
         </View>
-      </View>
 
-      <View style={styles.buttonContainer}>
-        <Button title="Submit" onPress={handleButtonPress} />
+        <View style={styles.board}>
+          <View style={styles.square}>
+            <TouchableOpacity onPress={handleSquare}>
+              <Text>{move}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.square}>
+            <TouchableOpacity onPress={handleSquare}>
+              <Text>{move}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.square}>
+            <TouchableOpacity onPress={handleSquare}>
+              <Text>{move}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.square}>
+            <TouchableOpacity onPress={handleSquare}>
+              <Text>{move}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.square}>
+            <TouchableOpacity onPress={handleSquare}>
+              <Text>{move}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.square}>
+            <TouchableOpacity onPress={handleSquare}>
+              <Text>{move}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.square}>
+            <TouchableOpacity onPress={handleSquare}>
+              <Text>{move}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.square}>
+            <TouchableOpacity onPress={handleSquare}>
+              <Text>{move}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.square}>
+            <TouchableOpacity onPress={handleSquare}>
+              <Text>{move}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => {}}
+            style={styles.button}
+            activeOpacity={0.8}
+          >
+            <Text onPress={handleRestart} style={styles.buttonText}>
+              Restart
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.turn}>
+          <Text style={styles.turnText}>Turn: {() => {}}</Text>
+        </View>
       </View>
       <StatusBar style="auto" />
     </SafeAreaView>
@@ -58,52 +102,74 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F3F4F7",
     alignItems: "center",
     justifyContent: "center",
   },
   header: {
-    backgroundColor: "#AA5042",
-    padding: 20,
+    marginBottom: 50,
+    // backgroundColor: "pink",
   },
   headerText: {
     fontSize: 42,
-    fontWeight: "900",
-    color: "#253031",
+    padding: 10,
   },
-  body: {
-    backgroundColor: "#508991",
-    padding: 20,
-  },
-  bodyText: {
-    color: "#253031",
-    fontSize: 18,
+  wrapper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonContainer: {
     marginTop: 20,
     padding: 5,
     borderRadius: 4,
   },
-  textInputContainer: {
-    display: "flex",
-    alignContent: "center",
-    justifyContent: "center",
-    margin: 10,
+  buttonContainer: {
+    elevation: 8,
+    backgroundColor: "#9E3C27",
+    borderColor: "#942911",
+    borderWidth: 5,
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    marginTop: 20,
   },
-  textContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
+  button: {
     alignItems: "center",
   },
-  input: {
-    color: "#9CA3AB",
-    padding: 5,
-    backgroundColor: "#F3F4F7",
-    width: 200,
-    height: 35,
-    borderWidth: 2,
-    borderColor: "gainsboro",
-    borderRadius: 4,
+  buttonText: {
+    fontSize: 18,
+    color: "white",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase",
+  },
+  board: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 350,
+    height: 350,
+    textAlign: "center",
+    backgroundColor: "gainsboro",
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 1,
+    padding: 18,
+  },
+  square: {
+    width: 100,
+    height: 100,
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 1,
+    margin: 2,
+    backgroundColor: "white",
+  },
+  turn: {
+    marginTop: 20,
+  },
+  turnText: {
+    fontSize: 26,
   },
 });
